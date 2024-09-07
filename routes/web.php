@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Builder\Email;
+use App\Factory\FormatterFactory;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,14 @@ Route::get('/', function () {
     $email = new Email("email to");
     $email->addCc('hello world');
     dd($email);
-    return view('welcome');
+});
+Route::get('/factory', function () {
+    $formatter = (new FormatterFactory())->getFormatter('json');
+    dd($formatter->format([
+        'alie' => 'aliii',
+        "salam" => 'hello'
+    ]));
+
 });
 
 Route::get('/dashboard', function () {
