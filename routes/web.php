@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Builder\Email;
 use App\Factory\FormatterFactory;
+use App\Strategy\PaymentStrategy;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,11 @@ Route::get('/factory', function () {
         "salam" => 'hello'
     ]));
 
+});
+
+Route::get('/strategy', function () {
+    $pay = new PaymentStrategy('CreditCard');
+    dd($pay->pay());
 });
 
 Route::get('/dashboard', function () {
